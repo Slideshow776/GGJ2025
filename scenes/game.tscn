@@ -1,18 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://co16p1xahabxr"]
+[gd_scene load_steps=7 format=3 uid="uid://co16p1xahabxr"]
 
 [ext_resource type="PackedScene" uid="uid://fsp8ieeax256" path="res://scenes/player.tscn" id="1_bc5s3"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_cpdko"]
 [ext_resource type="PackedScene" uid="uid://ul47tjraayjv" path="res://scenes/bubble.tscn" id="2_tkivx"]
 [ext_resource type="PackedScene" uid="uid://q3vre4fjs6tx" path="res://scenes/pickup.tscn" id="3_ixw15"]
 [ext_resource type="PackedScene" uid="uid://p33hcubmmdyb" path="res://scenes/obstacle.tscn" id="4_dg1og"]
 [ext_resource type="PackedScene" uid="uid://dm38iob7fov24" path="res://scenes/wall.tscn" id="5_dhs4u"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_cpdko")
 
 [node name="entities" type="Node" parent="."]
 
 [node name="Bubbles" type="Node" parent="entities"]
 
-[node name="Bubble" parent="entities/Bubbles" instance=ExtResource("2_tkivx")]
+[node name="FirstBubble" parent="entities/Bubbles" instance=ExtResource("2_tkivx")]
 position = Vector2(500, 382)
 
 [node name="Bubble2" parent="entities/Bubbles" instance=ExtResource("2_tkivx")]
@@ -21,6 +23,7 @@ position = Vector2(789, 101)
 [node name="Enemies" type="Node" parent="entities"]
 
 [node name="Player" parent="entities" instance=ExtResource("1_bc5s3")]
+unique_name_in_owner = true
 position = Vector2(661, 543)
 
 [node name="Pickups" type="Node" parent="entities"]
