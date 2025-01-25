@@ -5,6 +5,7 @@ extends Node2D
 
 var _player: Player
 
+
 func _process(delta: float) -> void:
 	if _player:
 		rotation += _rotation_speed * delta    
@@ -12,10 +13,8 @@ func _process(delta: float) -> void:
 
 
 func enter_player(player) -> void:
-	print("player entered a bubble")
 	_player = player
 
 
-func _exit_player() -> void:
-	print("Player exited the bubble")
+func exit_player() -> void:
 	_player = null

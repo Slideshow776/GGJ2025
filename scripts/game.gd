@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var shoot_speed = 600
+
 var first_player_event:= true
 
 @onready var player: Player = %Player
@@ -16,15 +18,14 @@ func _input(event: InputEvent) -> void:
 
 func _move_player() -> void:
 	if first_player_event:
-		print("placing player in bubble")
 		first_player_event = false
-		temp()
+		enter_player_in_first_bubble()
 		return
 	
-	print("moving player")
+	shoot_player()
 
 
-func temp():
+func enter_player_in_first_bubble():
 	var bubble = $entities/Bubbles/FirstBubble
 	
 	var tween := create_tween()
@@ -33,4 +34,14 @@ func temp():
 	tween.tween_property(player, "position", bubble.position, 1.0)
 	tween.finished.connect(func() -> void:
 		bubble.enter_player(player)
+		player.bubble = bubble
 	)
+
+
+func shoot_player() -> void:	
+	var shoot_direction = Vector2.UP.rotated(player.bubble.rotation)
+	player.bubble.exit_player()
+	player.bubble = null
+	
+	var velocity = shoot_direction * shoot_speed
+	player.velocity = velocity
