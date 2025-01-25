@@ -12,13 +12,11 @@ var _death_rotation := 0.0
 
 func _physics_process(delta) -> void:
 	move_and_slide()
-	print(velocity)
 	if is_dead:
 		rotation += _death_rotation
 
 
 func die() -> void:
-	print("player die()")
 	velocity *= -death_velocity
 	_death_rotation = randf_range(death_rotation_min, death_rotation_max)
 	is_dead = true

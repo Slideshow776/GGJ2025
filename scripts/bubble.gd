@@ -16,10 +16,7 @@ func _process(delta: float) -> void:
 		_player.rotation = rotation
 
 
-func enter_player(player: Player) -> void:
-	if player.is_dead:
-		return
-	
+func enter_player(player: Player) -> void:	
 	_player = player
 	
 	var tween := create_tween()
@@ -36,6 +33,8 @@ func exit_player() -> void:
 func _on_area_entered(area_that_entered: Node) -> void:
 	if area_that_entered is Player:
 		var player = area_that_entered
+		if player.is_dead:
+			return
 		
 		enter_player(player)
 		player.bubble = self

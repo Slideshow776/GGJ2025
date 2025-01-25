@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://p33hcubmmdyb"]
 
-[ext_resource type="Texture2D" uid="uid://op4yb8wp6yl" path="res://icon.svg" id="1_vo8uc"]
+[ext_resource type="Texture2D" uid="uid://op4yb8wp6yl" path="res://assets/images/icon.svg" id="1_vo8uc"]
 [ext_resource type="Script" path="res://scripts/kill_entity.gd" id="2_p2unk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxtkf"]
@@ -26,5 +26,4 @@ script = ExtResource("2_p2unk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mcnnk")

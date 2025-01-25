@@ -3,11 +3,19 @@ extends Node2D
 @export var shoot_speed = 1000
 
 var first_player_event:= true
+var score := 0
 
 @onready var player: Player = %Player
+@onready var label: Label = %Label
+
+
+func _ready() -> void:
+	_connect_pickup_signals()
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 	if event is InputEventMouseButton:  # Detect any mouse button
 		if event.pressed:
 			_move_player()
@@ -46,3 +54,18 @@ func shoot_player() -> void:
 	
 	var velocity = shoot_direction * shoot_speed
 	player.velocity = velocity
+
+
+func _connect_pickup_signals() -> void:
+	var entities = $entities/Pickups  # Adjust this path if `entities` is not a direct child
+	if entities:
+		for child in entities.get_children():
+			if child is Pickup:
+				child.picked_up.connect(_on_pickup)
+	else:
+		print("No pickup nodes found.")
+
+
+func _on_pickup() -> void:	
+	score += 10
+	label.set_text("Score: " + str(score))

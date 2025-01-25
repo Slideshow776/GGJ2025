@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://q3vre4fjs6tx"]
+[gd_scene load_steps=4 format=3 uid="uid://q3vre4fjs6tx"]
 
-[ext_resource type="Texture2D" uid="uid://op4yb8wp6yl" path="res://icon.svg" id="1_cii0s"]
+[ext_resource type="Script" path="res://scripts/pickup.gd" id="1_6ab0k"]
+[ext_resource type="Texture2D" uid="uid://op4yb8wp6yl" path="res://assets/images/icon.svg" id="1_cii0s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ntcxq"]
 radius = 17.0294
 
 [node name="Pickup" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_6ab0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
