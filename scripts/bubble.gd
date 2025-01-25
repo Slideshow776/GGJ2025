@@ -17,7 +17,11 @@ func _process(delta: float) -> void:
 
 
 func enter_player(player: Player) -> void:
+	if player.is_dead:
+		return
+	
 	_player = player
+	
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
 	tween.set_ease(Tween.EASE_OUT)
@@ -26,13 +30,17 @@ func enter_player(player: Player) -> void:
 
 func exit_player() -> void:
 	_player = null
+	_pop()
 
 
 func _on_area_entered(area_that_entered: Node) -> void:
 	if area_that_entered is Player:
-		print("Player entered the bubble!")
 		var player = area_that_entered
 		
 		enter_player(player)
 		player.bubble = self
 		player.velocity = Vector2.ZERO
+
+
+func _pop() -> void:
+	queue_free()

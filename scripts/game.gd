@@ -38,7 +38,6 @@ func enter_player_in_first_bubble():
 
 func shoot_player() -> void:
 	if player.bubble == null:
-		print("player.bubble is null")
 		return
 	
 	var shoot_direction = Vector2.UP.rotated(player.bubble.rotation)
