@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb0n3ofiugkw2"]
+
+[ext_resource type="PackedScene" uid="uid://ul47tjraayjv" path="res://scenes/bubble.tscn" id="1_7c3w6"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_txvdj"]
+[ext_resource type="PackedScene" uid="uid://q3vre4fjs6tx" path="res://scenes/pickup.tscn" id="2_ddtbb"]
+[ext_resource type="PackedScene" uid="uid://p33hcubmmdyb" path="res://scenes/obstacle.tscn" id="3_eiara"]
+[ext_resource type="PackedScene" uid="uid://dm38iob7fov24" path="res://scenes/wall.tscn" id="4_4fbxs"]
+
+[node name="Level0" type="Node2D"]
+
+[node name="Entities" type="Node" parent="."]
+script = ExtResource("1_txvdj")
+
+[node name="Bubbles" type="Node" parent="Entities"]
+
+[node name="FirstBubble" parent="Entities/Bubbles" instance=ExtResource("1_7c3w6")]
+position = Vector2(178, 848)
+
+[node name="Bubble2" parent="Entities/Bubbles" instance=ExtResource("1_7c3w6")]
+position = Vector2(506, 538)
+
+[node name="Enemies" type="Node" parent="Entities"]
+
+[node name="Pickups" type="Node" parent="Entities"]
+
+[node name="Pickup" parent="Entities/Pickups" instance=ExtResource("2_ddtbb")]
+position = Vector2(302, 742)
+
+[node name="Pickup2" parent="Entities/Pickups" instance=ExtResource("2_ddtbb")]
+position = Vector2(350, 697)
+
+[node name="Pickup3" parent="Entities/Pickups" instance=ExtResource("2_ddtbb")]
+position = Vector2(394, 659)
+
+[node name="Obstacles" type="Node" parent="Entities"]
+
+[node name="Obstacle" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
+position = Vector2(269, 544)
+
+[node name="Obstacle2" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
+position = Vector2(269, 544)
+
+[node name="Obstacle3" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
+position = Vector2(202, 540)
+
+[node name="Obstacle4" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
+position = Vector2(137, 541)
+
+[node name="Walls" type="Node" parent="Entities"]
+
+[node name="Wall" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+
+[node name="Wall6" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 0)
+
+[node name="Wall7" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 128)
+
+[node name="Wall8" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 256)
+
+[node name="Wall9" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 384)
+
+[node name="Wall10" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 512)
+
+[node name="Wall16" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 640)
+
+[node name="Wall17" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 768)
+
+[node name="Wall18" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 896)
+
+[node name="Wall19" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 1024)
+
+[node name="Wall20" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(679, 1152)
+
+[node name="Wall2" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 128)
+
+[node name="Wall3" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 256)
+
+[node name="Wall4" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 384)
+
+[node name="Wall5" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 512)
+
+[node name="Wall11" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 640)
+
+[node name="Wall12" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 768)
+
+[node name="Wall13" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 896)
+
+[node name="Wall14" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 1024)
+
+[node name="Wall15" parent="Entities/Walls" instance=ExtResource("4_4fbxs")]
+position = Vector2(0, 1152)

@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://7wx3lsj8n8"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_y5f10"]
+[ext_resource type="PackedScene" uid="uid://ul47tjraayjv" path="res://scenes/bubble.tscn" id="2_wruqj"]
+[ext_resource type="PackedScene" uid="uid://q3vre4fjs6tx" path="res://scenes/pickup.tscn" id="3_h2j3j"]
+[ext_resource type="PackedScene" uid="uid://dm38iob7fov24" path="res://scenes/wall.tscn" id="5_pje4f"]
+
+[node name="Level2" type="Node2D"]
+position = Vector2(16, 0)
+
+[node name="Entities" type="Node" parent="."]
+script = ExtResource("1_y5f10")
+
+[node name="Bubbles" type="Node" parent="Entities"]
+
+[node name="FirstBubble" parent="Entities/Bubbles" instance=ExtResource("2_wruqj")]
+position = Vector2(485, 915)
+
+[node name="FirstBubble2" parent="Entities/Bubbles" instance=ExtResource("2_wruqj")]
+position = Vector2(457, 551)
+
+[node name="Bubble2" parent="Entities/Bubbles" instance=ExtResource("2_wruqj")]
+position = Vector2(211, 224)
+
+[node name="Enemies" type="Node" parent="Entities"]
+
+[node name="Pickups" type="Node" parent="Entities"]
+
+[node name="Pickup2" parent="Entities/Pickups" instance=ExtResource("3_h2j3j")]
+position = Vector2(309, 363)
+
+[node name="Pickup3" parent="Entities/Pickups" instance=ExtResource("3_h2j3j")]
+position = Vector2(461, 753)
+
+[node name="Obstacles" type="Node" parent="Entities"]
+
+[node name="Walls" type="Node" parent="Entities"]
+
+[node name="Wall" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 0)
+
+[node name="Wall6" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 0)
+
+[node name="Wall7" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 128)
+
+[node name="Wall8" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 256)
+
+[node name="Wall9" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 384)
+
+[node name="Wall10" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 512)
+
+[node name="Wall16" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 640)
+
+[node name="Wall17" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 768)
+
+[node name="Wall18" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 896)
+
+[node name="Wall19" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 1024)
+
+[node name="Wall20" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(663, 1152)
+
+[node name="Wall2" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 128)
+
+[node name="Wall3" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 256)
+
+[node name="Wall4" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 384)
+
+[node name="Wall5" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 512)
+
+[node name="Wall11" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 640)
+
+[node name="Wall12" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 768)
+
+[node name="Wall13" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 896)
+
+[node name="Wall14" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 1024)
+
+[node name="Wall15" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
+position = Vector2(16, 1152)

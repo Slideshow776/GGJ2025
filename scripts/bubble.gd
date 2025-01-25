@@ -22,7 +22,7 @@ func enter_player(player: Player) -> void:
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_SPRING)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(player, "position", position, 0.25)
+	tween.tween_property(player, "global_position", global_position, 0.25)
 
 
 func exit_player() -> void:
