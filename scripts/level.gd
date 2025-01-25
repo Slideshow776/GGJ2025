@@ -41,6 +41,7 @@ func restart() -> void:
 	# Remove all existing bubbles
 	for child in bubbles_node.get_children():
 		if child is Bubble:
+			(child as Bubble)._player = null
 			child.queue_free()
 
 	# Recreate bubbles from the stored originals
@@ -57,6 +58,7 @@ func restart() -> void:
 				bottommost_bubble = new_bubble
 
 	first_bubble = bottommost_bubble
+	first_bubble._player = null
 
 
 func set_new_position(new_position: Vector2):

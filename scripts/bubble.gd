@@ -4,6 +4,7 @@ extends Area2D
 @export var _rotation_speed := 3.0
 
 var _player: Player
+var _position_tween: Tween
 
 
 func _ready():
@@ -16,17 +17,21 @@ func _process(delta: float) -> void:
 		_player.rotation = rotation
 
 
-func enter_player(player: Player) -> void:	
+func enter_player(player: Player) -> void:
+	if player.is_dead:
+		return
+	
 	_player = player
 	
-	var tween := create_tween()
-	tween.set_trans(Tween.TRANS_SPRING)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(player, "global_position", global_position, 0.25)
+	_position_tween = create_tween()
+	_position_tween.set_trans(Tween.TRANS_SPRING)
+	_position_tween.set_ease(Tween.EASE_OUT)
+	_position_tween.tween_property(player, "global_position", global_position, 0.25)
 
 
 func exit_player() -> void:
 	_player = null
+	_position_tween.stop()
 	_pop()
 
 

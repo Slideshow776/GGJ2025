@@ -18,6 +18,7 @@ var camera_counter := 0.0
 var camera_frequency := 0.2
 var is_camera_counting := false
 var first_bubble_move_duration = 1.0
+var position_tween: Tween
 
 @onready var player: Player = %Player
 @onready var label: Label = %Label
@@ -151,10 +152,10 @@ func enter_player_in_first_bubble():
 	player.bubble = first_bubble
 	first_bubble.enter_player(player)
 	
-	var tween := create_tween()
-	tween.set_trans(Tween.TRANS_EXPO)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(player, "global_position", first_bubble.global_position, first_bubble_move_duration)
+	position_tween = create_tween()
+	position_tween.set_trans(Tween.TRANS_EXPO)
+	position_tween.set_ease(Tween.EASE_OUT)
+	position_tween.tween_property(player, "global_position", first_bubble.global_position, first_bubble_move_duration)
 
 
 func shoot_player() -> void:
@@ -186,10 +187,11 @@ func _restart() -> void:
 	is_game_over = true
 	await get_tree().create_timer(game_over_wait_duration).timeout
 	
+	position_tween.stop()
 	is_first_player_event = true
 	purge_player_from_bubbles()
-	for level in loaded_levels:
-		level.restart()
+	loaded_levels.clear()
+	load_new_level()
 	level_0.restart()
 	first_bubble = level_0.first_bubble	
 	background.position = background_original_position
@@ -198,6 +200,7 @@ func _restart() -> void:
 	camera_2d.position = camera_original_position
 	player.position = player_original_position
 	player.restart()
+	first_bubble._player = null
 	is_game_over = false
 
 
@@ -208,4 +211,4 @@ func purge_player_from_bubbles() -> void:
 
 	for bubble in bubbles_node.get_children():
 		if bubble is Bubble and bubble._player == player:
-			bubble.exit_player()  # Ensure the player exits the bubble
+			(bubble as Bubble).exit_player()  # Ensure the player exits the bubble
