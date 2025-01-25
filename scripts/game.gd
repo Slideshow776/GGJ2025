@@ -1,22 +1,28 @@
 extends Node2D
 
 @export var shoot_speed := 1000
-@export var game_over_wait_duration := 1.0
+@export var game_over_wait_duration := 1.5
 
 var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
 var loaded_levels: Array[Level2] = []
 var num_levels := 0
 var level_height := 1280
-var first_player_event := true
+var is_first_player_event := true
 var score := 0
 var player_original_position: Vector2
+var background_original_position: Vector2
+var camera_original_position: Vector2
 var is_game_over := false
 var first_bubble: Bubble
+var camera_counter := 0.0
+var camera_frequency := 0.2
+var is_camera_counting := false
+var first_bubble_move_duration = 1.0
 
 @onready var player: Player = %Player
 @onready var label: Label = %Label
 @onready var level_0: Level2 = %Level0  # Reference to the first level (Level0)
-@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var background: Sprite2D = %Background
 @onready var camera_2d: Camera2D = %Camera2D
 
 
@@ -26,9 +32,10 @@ func _ready() -> void:
 	level_scenes.append(level_0)
 	num_levels += 1
 	load_new_level()
-	camera_2d.position = player.position
 	camera_2d.zoom = Vector2.ONE * 0.9
 	
+	background_original_position = background.position
+	camera_original_position = camera_2d.position
 	player_original_position = player.global_position
 	player.died.connect(_restart)
 
@@ -39,8 +46,13 @@ func _process(delta: float) -> void:
 		load_new_level()
 		remove_old_level()
 	
-	sprite_2d.position.y = player.global_position.y
-	camera_2d.position.y = player.position.y
+	if is_camera_counting:
+		camera_counter += delta
+		
+	if !is_game_over and camera_counter >= first_bubble_move_duration * 0.2:
+		is_camera_counting = false
+		background.position.y = player.global_position.y
+		camera_2d.position.y = player.position.y
 
 
 func _input(event: InputEvent) -> void:
@@ -121,8 +133,9 @@ func remove_old_level() -> void: # a better approach would be to pool the levels
 
 
 func _move_player() -> void:
-	if first_player_event:
-		first_player_event = false
+	if is_first_player_event:
+		is_first_player_event = false
+		is_camera_counting = true
 		enter_player_in_first_bubble()
 		return
 	
@@ -141,7 +154,7 @@ func enter_player_in_first_bubble():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(player, "global_position", first_bubble.global_position, 1.0)
+	tween.tween_property(player, "global_position", first_bubble.global_position, first_bubble_move_duration)
 
 
 func shoot_player() -> void:
@@ -173,9 +186,26 @@ func _restart() -> void:
 	is_game_over = true
 	await get_tree().create_timer(game_over_wait_duration).timeout
 	
-	is_game_over = false
+	is_first_player_event = true
+	purge_player_from_bubbles()
+	for level in loaded_levels:
+		level.restart()
+	level_0.restart()
+	first_bubble = level_0.first_bubble	
+	background.position = background_original_position
+	is_camera_counting = false
+	camera_counter = 0.0
+	camera_2d.position = camera_original_position
 	player.position = player_original_position
 	player.restart()
-	first_player_event = true
-	level_0.restart()
-	first_bubble = level_0.first_bubble
+	is_game_over = false
+
+
+func purge_player_from_bubbles() -> void:
+	var bubbles_node = get_node_or_null("Entities/Bubbles")
+	if not bubbles_node:
+		return
+
+	for bubble in bubbles_node.get_children():
+		if bubble is Bubble and bubble._player == player:
+			bubble.exit_player()  # Ensure the player exits the bubble

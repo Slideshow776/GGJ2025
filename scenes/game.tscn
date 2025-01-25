@@ -12,13 +12,13 @@ script = ExtResource("1_cpdko")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(332.195, 1782.13)
+position = Vector2(332.195, 1862.13)
 position_smoothing_speed = 20.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.513233, 0.513233, 0.513233, 1)
-position = Vector2(330, 1772)
+position = Vector2(330, 1756)
 scale = Vector2(1.10168, 1.10168)
 texture = ExtResource("2_lvsdj")
 
@@ -27,7 +27,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("1_bc5s3")]
 unique_name_in_owner = true
-position = Vector2(331, 2472)
+position = Vector2(331, 2392)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
