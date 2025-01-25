@@ -3,7 +3,9 @@ extends Node2D
 @export var shoot_speed = 1000
 
 var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
-var level_height := 1152
+var loaded_levels: Array[Level2] = []
+var num_levels := 0
+var level_height := 1280
 var first_player_event := true
 var score := 0
 
@@ -16,7 +18,16 @@ func _ready() -> void:
 	_load_levels_from_directory()
 	_connect_pickup_signals(level_0)
 	level_scenes.append(level_0)
+	num_levels += 1
 	load_new_level()
+
+
+func _process(delta: float) -> void:
+	var latest_level: Level2 = loaded_levels[-1]
+	if player.position.y < latest_level.position.y + level_height:
+		load_new_level()
+		remove_old_level()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
@@ -56,6 +67,7 @@ func _load_levels_from_directory() -> void:
 		var scene = load(scene_path) as PackedScene
 		if scene:
 			level_scenes.append(scene)
+			num_levels += 1
 		else:
 			print("Error: Failed to load scene:", scene_path)
 
@@ -73,13 +85,21 @@ func load_new_level() -> void:
 	
 	if new_level == null:
 		print("Error: Failed to instantiate new level.")
-		return	
+		return
 	
-	new_level.set_new_position(Vector2(0.0, -(level_scenes.size() - 1) * level_height))
+	new_level.set_new_position(Vector2(0.0, -(loaded_levels.size() + 1) * level_height))
 
 	add_child(new_level)
+	loaded_levels.append(new_level)
 	
 	_connect_pickup_signals(new_level)
+
+
+func remove_old_level() -> void: # a better approach would be to pool the levels...
+	if loaded_levels.size() < 4:
+		return
+
+	loaded_levels[-4].queue_free()
 
 
 func _move_player() -> void:

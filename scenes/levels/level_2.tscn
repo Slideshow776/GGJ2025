@@ -11,7 +11,7 @@ extends Node
 "
 
 [node name="Level2" type="Node2D"]
-position = Vector2(8, 0)
+position = Vector2(16, 0)
 script = ExtResource("1_qts00")
 
 [node name="Label" type="Label" parent="."]
@@ -56,61 +56,61 @@ position = Vector2(334, 775)
 [node name="Walls" type="Node" parent="Entities"]
 
 [node name="Wall" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 0)
+position = Vector2(16, 0)
 
 [node name="Wall6" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 0)
+position = Vector2(639, 0)
 
 [node name="Wall7" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 128)
+position = Vector2(639, 128)
 
 [node name="Wall8" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 256)
+position = Vector2(639, 256)
 
 [node name="Wall9" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 384)
+position = Vector2(639, 384)
 
 [node name="Wall10" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 512)
+position = Vector2(639, 512)
 
 [node name="Wall16" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 640)
+position = Vector2(639, 640)
 
 [node name="Wall17" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 768)
+position = Vector2(639, 768)
 
 [node name="Wall18" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 896)
+position = Vector2(639, 896)
 
 [node name="Wall19" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 1024)
+position = Vector2(639, 1024)
 
 [node name="Wall20" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(655, 1152)
+position = Vector2(639, 1152)
 
 [node name="Wall2" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 128)
+position = Vector2(16, 128)
 
 [node name="Wall3" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 256)
+position = Vector2(16, 256)
 
 [node name="Wall4" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 384)
+position = Vector2(16, 384)
 
 [node name="Wall5" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 512)
+position = Vector2(16, 512)
 
 [node name="Wall11" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 640)
+position = Vector2(16, 640)
 
 [node name="Wall12" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 768)
+position = Vector2(16, 768)
 
 [node name="Wall13" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 896)
+position = Vector2(16, 896)
 
 [node name="Wall14" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 1024)
+position = Vector2(16, 1024)
 
 [node name="Wall15" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(8, 1152)
+position = Vector2(16, 1152)

@@ -3,6 +3,7 @@ extends Node2D
 
 
 func set_new_position(new_position: Vector2):
+	position += new_position	
 	get_child(0).position += new_position
 	
 	var bubbles_node = get_node_or_null("Entities/Bubbles")
