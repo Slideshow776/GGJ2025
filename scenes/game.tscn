@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://fsp8ieeax256" path="res://scenes/player.tscn" id="1_bc5s3"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_cpdko"]
 [ext_resource type="PackedScene" uid="uid://bb0n3ofiugkw2" path="res://scenes/levels/level_0.tscn" id="2_bpl2f"]
-[ext_resource type="Theme" uid="uid://b3v2o7lflt758" path="res://assets/main_theme.tres" id="7_llnwt"]
+[ext_resource type="Theme" path="res://assets/main_theme.tres" id="7_llnwt"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(0, -64)

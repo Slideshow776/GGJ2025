@@ -1,16 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://fomywf1wat7y"]
+[gd_scene load_steps=7 format=3 uid="uid://r7h3yhl50hky"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_byqj6"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_0j48k"]
 [ext_resource type="PackedScene" uid="uid://ul47tjraayjv" path="res://scenes/bubble.tscn" id="2_hy4jw"]
 [ext_resource type="PackedScene" uid="uid://q3vre4fjs6tx" path="res://scenes/pickup.tscn" id="3_x8mml"]
 [ext_resource type="PackedScene" uid="uid://p33hcubmmdyb" path="res://scenes/obstacle.tscn" id="4_eiw4i"]
 [ext_resource type="PackedScene" uid="uid://dm38iob7fov24" path="res://scenes/wall.tscn" id="5_6o1ki"]
 
+[sub_resource type="GDScript" id="GDScript_d2t5u"]
+script/source = "class_name Level
+extends Node
+"
+
 [node name="Level1" type="Node2D"]
 position = Vector2(-8, 0)
+script = ExtResource("1_0j48k")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 307.0
+offset_top = 1136.0
+offset_right = 357.0
+offset_bottom = 1159.0
+grow_horizontal = 2
+text = "level 1
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="Entities" type="Node" parent="."]
-script = ExtResource("1_byqj6")
+script = SubResource("GDScript_d2t5u")
 
 [node name="Bubbles" type="Node" parent="Entities"]
 

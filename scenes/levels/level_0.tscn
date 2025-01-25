@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb0n3ofiugkw2"]
+[gd_scene load_steps=7 format=3 uid="uid://bb0n3ofiugkw2"]
 
 [ext_resource type="PackedScene" uid="uid://ul47tjraayjv" path="res://scenes/bubble.tscn" id="1_7c3w6"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_txvdj"]
@@ -6,10 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://p33hcubmmdyb" path="res://scenes/obstacle.tscn" id="3_eiara"]
 [ext_resource type="PackedScene" uid="uid://dm38iob7fov24" path="res://scenes/wall.tscn" id="4_4fbxs"]
 
+[sub_resource type="GDScript" id="GDScript_d2t5u"]
+
 [node name="Level0" type="Node2D"]
+script = ExtResource("1_txvdj")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 299.0
+offset_top = 1136.0
+offset_right = 349.0
+offset_bottom = 1159.0
+grow_horizontal = 2
+text = "level 0
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="Entities" type="Node" parent="."]
-script = ExtResource("1_txvdj")
+script = SubResource("GDScript_d2t5u")
 
 [node name="Bubbles" type="Node" parent="Entities"]
 
@@ -18,6 +34,9 @@ position = Vector2(178, 848)
 
 [node name="Bubble2" parent="Entities/Bubbles" instance=ExtResource("1_7c3w6")]
 position = Vector2(506, 538)
+
+[node name="Bubble3" parent="Entities/Bubbles" instance=ExtResource("1_7c3w6")]
+position = Vector2(325, 13)
 
 [node name="Enemies" type="Node" parent="Entities"]
 

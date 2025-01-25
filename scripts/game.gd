@@ -3,20 +3,20 @@ extends Node2D
 @export var shoot_speed = 1000
 
 var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
-var active_levels: Array[Node2D] = []  # Array to store active level nodes
-var level_height := 1152  # Adjust to match the vertical size of your levels
+var level_height := 1152
 var first_player_event := true
 var score := 0
 
 @onready var player: Player = %Player
 @onready var label: Label = %Label
+@onready var level_0: Node2D = %Level0  # Reference to the first level (Level0)
 
 
 func _ready() -> void:
-	_load_levels_from_directory()  # Load levels from folder
-	load_new_level()  # Load the first level
-	#load_new_level()  # Load a second level to start
-
+	_load_levels_from_directory()
+	_connect_pickup_signals(level_0)
+	level_scenes.append(level_0)
+	load_new_level()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
@@ -29,15 +29,6 @@ func _input(event: InputEvent) -> void:
 			_move_player()
 
 
-func _physics_process(delta: float) -> void:
-	_remove_offscreen_levels()
-
-	if active_levels.size() > 0:
-		var top_level = active_levels[active_levels.size() - 1]
-		if top_level.global_position.y + level_height < player.global_position.y:
-			load_new_level()
-
-
 func _load_levels_from_directory() -> void:
 	var directory_path := "res://scenes/levels"
 	var dir = DirAccess.open(directory_path)
@@ -45,31 +36,28 @@ func _load_levels_from_directory() -> void:
 		print("Error: Could not open directory:", directory_path)
 		return
 
-	dir.list_dir_begin()  # Begin iterating through the directory
+	dir.list_dir_begin()
 
 	while true:
 		var file_name = dir.get_next()
 		if file_name == "":
-			break  # Stop if no more files are found
+			break
 
-		print("Checking file: ", file_name)  # Debug: Print the name of each file
+		if file_name == "level_0.tscn":
+			continue
 
-		if file_name.ends_with(".tscn") and file_name != "level_0.tscn":
-			var scene_path = directory_path + "/" + file_name
-			print("Trying to load scene from path:", scene_path)  # Debug: Show the full scene path
+		var scene_path = directory_path + "/" + file_name
 
-			# Verify if the scene file exists before loading
-			var file = FileAccess.open(scene_path, FileAccess.READ)
-			if file == null:
-				print("Error: File not found:", scene_path)
-				continue
+		var file = FileAccess.open(scene_path, FileAccess.READ)
+		if file == null:
+			print("Error: File not found:", scene_path)
+			continue
 
-			var scene = load(scene_path) as PackedScene
-			if scene:
-				print("Successfully loaded scene:", file_name)  # Debug: Successful loading
-				level_scenes.append(scene)
-			else:
-				print("Error: Failed to load scene:", scene_path)
+		var scene = load(scene_path) as PackedScene
+		if scene:
+			level_scenes.append(scene)
+		else:
+			print("Error: Failed to load scene:", scene_path)
 
 	dir.list_dir_end()  # End directory iteration
 	print("Loaded levels:", level_scenes.size())
@@ -80,46 +68,18 @@ func load_new_level() -> void:
 		print("No levels available for loading.")
 		return
 
-	var level_scene = level_scenes[randi() % level_scenes.size()]  # Pick a random level
-	var new_level = level_scene.instantiate() as Node2D
+	var level_scene = level_scenes[randi() % level_scenes.size()]
+	var new_level = level_scene.instantiate() as Level2
 	
-	# Stack new level above the last active level (moving up)
-	if active_levels.size() == 0:
-		# First level at the bottom (positioned at the origin)
-		new_level.position = Vector2(0, 0)
-	else:
-		# Get the last level's position and place the new level above it
-		var last_level = active_levels[active_levels.size() - 1]
-		# Position the new level above the last one (Y value decreases as we go up)
-		new_level.position = Vector2(0, last_level.position.y + level_height)
+	if new_level == null:
+		print("Error: Failed to instantiate new level.")
+		return	
+	
+	new_level.set_new_position(Vector2(0.0, -(level_scenes.size() - 1) * level_height))
 
-	# Move all children of the new level to align with the level's new position
-	for child in new_level.get_children():
-		print("mark 0")
-		if child is Node2D:
-			print("mark 1")
-			child.position += new_level.position
-
-	# Add the new level to the scene
 	add_child(new_level)
-
-	# Track the new level in the active_levels array
-	active_levels.append(new_level)
 	
-	print("added level: " + new_level.name)
-
-	# Connect pickups in the new level
 	_connect_pickup_signals(new_level)
-
-
-
-# Remove levels that are off-screen, below the player
-func _remove_offscreen_levels() -> void:
-	for level in active_levels:
-		if level.global_position.y > player.global_position.y + level_height:
-			print("Removing level:", level.name)
-			active_levels.erase(level)  # Remove the level from the active array
-			level.queue_free()  # Free the level from the scene
 
 
 func _move_player() -> void:
@@ -166,6 +126,6 @@ func _connect_pickup_signals(level: Node2D) -> void:
 				child.picked_up.connect(_on_pickup)
 
 
-func _on_pickup() -> void:    
+func _on_pickup() -> void:
 	score += 10
 	label.set_text("Score: " + str(score))

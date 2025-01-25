@@ -1,97 +1,116 @@
-[gd_scene load_steps=5 format=3 uid="uid://7wx3lsj8n8"]
+[gd_scene load_steps=6 format=3 uid="uid://cy3llg65j8q3v"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_y5f10"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_qts00"]
 [ext_resource type="PackedScene" uid="uid://ul47tjraayjv" path="res://scenes/bubble.tscn" id="2_wruqj"]
 [ext_resource type="PackedScene" uid="uid://q3vre4fjs6tx" path="res://scenes/pickup.tscn" id="3_h2j3j"]
 [ext_resource type="PackedScene" uid="uid://dm38iob7fov24" path="res://scenes/wall.tscn" id="5_pje4f"]
 
+[sub_resource type="GDScript" id="GDScript_d2t5u"]
+script/source = "class_name Level
+extends Node
+"
+
 [node name="Level2" type="Node2D"]
-position = Vector2(16, 0)
+position = Vector2(8, 0)
+script = ExtResource("1_qts00")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 283.0
+offset_top = 1136.0
+offset_right = 333.0
+offset_bottom = 1159.0
+grow_horizontal = 2
+text = "level 2
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="Entities" type="Node" parent="."]
-script = ExtResource("1_y5f10")
+script = SubResource("GDScript_d2t5u")
 
 [node name="Bubbles" type="Node" parent="Entities"]
 
 [node name="FirstBubble" parent="Entities/Bubbles" instance=ExtResource("2_wruqj")]
-position = Vector2(485, 915)
+position = Vector2(197, 968)
 
 [node name="FirstBubble2" parent="Entities/Bubbles" instance=ExtResource("2_wruqj")]
-position = Vector2(457, 551)
+position = Vector2(449, 551)
 
 [node name="Bubble2" parent="Entities/Bubbles" instance=ExtResource("2_wruqj")]
-position = Vector2(211, 224)
+position = Vector2(203, 224)
 
 [node name="Enemies" type="Node" parent="Entities"]
 
 [node name="Pickups" type="Node" parent="Entities"]
 
 [node name="Pickup2" parent="Entities/Pickups" instance=ExtResource("3_h2j3j")]
-position = Vector2(309, 363)
+position = Vector2(301, 363)
 
 [node name="Pickup3" parent="Entities/Pickups" instance=ExtResource("3_h2j3j")]
-position = Vector2(461, 753)
+position = Vector2(334, 775)
 
 [node name="Obstacles" type="Node" parent="Entities"]
 
 [node name="Walls" type="Node" parent="Entities"]
 
 [node name="Wall" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 0)
+position = Vector2(8, 0)
 
 [node name="Wall6" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 0)
+position = Vector2(655, 0)
 
 [node name="Wall7" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 128)
+position = Vector2(655, 128)
 
 [node name="Wall8" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 256)
+position = Vector2(655, 256)
 
 [node name="Wall9" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 384)
+position = Vector2(655, 384)
 
 [node name="Wall10" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 512)
+position = Vector2(655, 512)
 
 [node name="Wall16" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 640)
+position = Vector2(655, 640)
 
 [node name="Wall17" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 768)
+position = Vector2(655, 768)
 
 [node name="Wall18" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 896)
+position = Vector2(655, 896)
 
 [node name="Wall19" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 1024)
+position = Vector2(655, 1024)
 
 [node name="Wall20" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(663, 1152)
+position = Vector2(655, 1152)
 
 [node name="Wall2" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 128)
+position = Vector2(8, 128)
 
 [node name="Wall3" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 256)
+position = Vector2(8, 256)
 
 [node name="Wall4" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 384)
+position = Vector2(8, 384)
 
 [node name="Wall5" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 512)
+position = Vector2(8, 512)
 
 [node name="Wall11" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 640)
+position = Vector2(8, 640)
 
 [node name="Wall12" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 768)
+position = Vector2(8, 768)
 
 [node name="Wall13" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 896)
+position = Vector2(8, 896)
 
 [node name="Wall14" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 1024)
+position = Vector2(8, 1024)
 
 [node name="Wall15" parent="Entities/Walls" instance=ExtResource("5_pje4f")]
-position = Vector2(16, 1152)
+position = Vector2(8, 1152)
