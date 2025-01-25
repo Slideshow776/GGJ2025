@@ -14,6 +14,7 @@ extends Node
 [node name="Level1" type="Node2D"]
 position = Vector2(-16, 0)
 script = ExtResource("1_0j48k")
+bubble_scene = ExtResource("2_hy4jw")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

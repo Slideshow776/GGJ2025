@@ -13,6 +13,7 @@ extends Node
 [node name="Level2" type="Node2D"]
 position = Vector2(16, 0)
 script = ExtResource("1_qts00")
+bubble_scene = ExtResource("2_wruqj")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

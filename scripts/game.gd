@@ -1,6 +1,7 @@
 extends Node2D
 
-@export var shoot_speed = 1000
+@export var shoot_speed := 1000
+@export var game_over_wait_duration := 1.0
 
 var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
 var loaded_levels: Array[Level2] = []
@@ -8,10 +9,15 @@ var num_levels := 0
 var level_height := 1280
 var first_player_event := true
 var score := 0
+var player_original_position: Vector2
+var is_game_over := false
+var first_bubble: Bubble
 
 @onready var player: Player = %Player
 @onready var label: Label = %Label
-@onready var level_0: Node2D = %Level0  # Reference to the first level (Level0)
+@onready var level_0: Level2 = %Level0  # Reference to the first level (Level0)
+@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var camera_2d: Camera2D = %Camera2D
 
 
 func _ready() -> void:
@@ -20,6 +26,11 @@ func _ready() -> void:
 	level_scenes.append(level_0)
 	num_levels += 1
 	load_new_level()
+	camera_2d.position = player.position
+	camera_2d.zoom = Vector2.ONE * 0.9
+	
+	player_original_position = player.global_position
+	player.died.connect(_restart)
 
 
 func _process(delta: float) -> void:
@@ -27,11 +38,18 @@ func _process(delta: float) -> void:
 	if player.position.y < latest_level.position.y + level_height:
 		load_new_level()
 		remove_old_level()
+	
+	sprite_2d.position.y = player.global_position.y
+	camera_2d.position.y = player.position.y
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
+		
+	if is_game_over:
+		return
+	
 	if event is InputEventMouseButton:  # Detect any mouse button
 		if event.pressed:
 			_move_player()
@@ -72,7 +90,7 @@ func _load_levels_from_directory() -> void:
 			print("Error: Failed to load scene:", scene_path)
 
 	dir.list_dir_end()  # End directory iteration
-	print("Loaded levels:", level_scenes.size())
+	#print("Loaded levels:", level_scenes.size())
 
 
 func load_new_level() -> void:
@@ -112,18 +130,18 @@ func _move_player() -> void:
 
 
 func enter_player_in_first_bubble():
-	var bubble = %Level0/Entities/Bubbles/FirstBubble as Bubble
-	if bubble == null:
+	first_bubble = level_0.first_bubble
+	if first_bubble == null:
 		print("game.gd => Error: first bubble is null!")
 		return
 		
-	player.bubble = bubble
-	bubble.enter_player(player)
+	player.bubble = first_bubble
+	first_bubble.enter_player(player)
 	
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(player, "global_position", bubble.global_position, 1.0)
+	tween.tween_property(player, "global_position", first_bubble.global_position, 1.0)
 
 
 func shoot_player() -> void:
@@ -149,3 +167,15 @@ func _connect_pickup_signals(level: Node2D) -> void:
 func _on_pickup() -> void:
 	score += 10
 	label.set_text("Score: " + str(score))
+
+
+func _restart() -> void:
+	is_game_over = true
+	await get_tree().create_timer(game_over_wait_duration).timeout
+	
+	is_game_over = false
+	player.position = player_original_position
+	player.restart()
+	first_player_event = true
+	level_0.restart()
+	first_bubble = level_0.first_bubble
