@@ -25,8 +25,7 @@ offset_top = 1136.0
 offset_right = 357.0
 offset_bottom = 1159.0
 grow_horizontal = 2
-text = "level 1
-"
+text = "Hey, I’m warning you, I’m not waffling around!"
 metadata/_edit_use_anchors_ = true
 
 [node name="Entities" type="Node" parent="."]

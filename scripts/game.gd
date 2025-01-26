@@ -80,7 +80,6 @@ func _input(event: InputEvent) -> void:
 			_move_player()
 	elif event is InputEventKey: # detect keyboard events
 		if event.pressed:
-			print("A key was pressed!")
 			_move_player()
 
 

@@ -24,8 +24,7 @@ offset_top = 1136.0
 offset_right = 333.0
 offset_bottom = 1159.0
 grow_horizontal = 2
-text = "level 2
-"
+text = "Wake, waffle, repeat!"
 metadata/_edit_use_anchors_ = true
 
 [node name="Entities" type="Node" parent="."]
