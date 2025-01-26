@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm38iob7fov24"]
+[gd_scene load_steps=6 format=3 uid="uid://dm38iob7fov24"]
 
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_2t4c0"]
 [ext_resource type="Texture2D" uid="uid://bssmei5ig0vs1" path="res://assets/images/mouth.png" id="1_e3c0v"]
 [ext_resource type="Script" path="res://scripts/kill_entity.gd" id="2_6s1b8"]
 
@@ -12,8 +13,10 @@ size = Vector2(138, 138)
 [node name="Wall" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("1_2t4c0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-7.99999, 7.00001)
 scale = Vector2(0.132308, 0.11421)
 texture = ExtResource("1_e3c0v")
