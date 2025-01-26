@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://fsp8ieeax256"]
+[gd_scene load_steps=6 format=3 uid="uid://fsp8ieeax256"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2qefk"]
 [ext_resource type="Texture2D" uid="uid://j5sis2sxsb7e" path="res://assets/images/waffle_test.png" id="2_dlmvl"]
+[ext_resource type="AudioStream" uid="uid://boyvjnn18vpme" path="res://assets/audio/sfx/682424__pnmcarrierailfan__human-fart_3.mp3" id="3_aymqy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4a85"]
 radius = 27.0185
@@ -25,3 +26,8 @@ shape = SubResource("CircleShape2D_h4a85")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_jqfgl")
+
+[node name="FartSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_aymqy")
+volume_db = -15.0

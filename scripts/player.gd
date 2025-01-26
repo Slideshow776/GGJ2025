@@ -26,6 +26,9 @@ func die() -> void:
 	is_dead = true
 	died.emit()
 	
+	%FartSound.pitch_scale = randf_range(0.5, 1.5)
+	%FartSound.play()
+	
 func restart() -> void:
 	velocity = Vector2.ZERO
 	rotation = 0.0

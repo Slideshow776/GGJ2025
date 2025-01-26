@@ -24,6 +24,9 @@ var position_tween: Tween
 @onready var level_0: Level2 = %Level0  # Reference to the first level (Level0)
 @onready var background: Sprite2D = %Background
 @onready var camera_2d: Camera2D = %Camera2D
+@onready var bubble_sound: AudioStreamPlayer = %BubbleSound
+@onready var pickup_sound: AudioStreamPlayer = %PickupSound
+@onready var high_score_label: Label = %HighScoreLabel
 
 
 func _ready() -> void:
@@ -38,6 +41,11 @@ func _ready() -> void:
 	camera_original_position = camera_2d.position
 	player_original_position = player.global_position
 	player.died.connect(_restart)
+	
+	bubble_sound.pitch_scale = 0.5
+	pickup_sound.pitch_scale = 0.5
+	label.set_text("Score: " + str(game_manager.score))
+	high_score_label.set_text("highscore: " + str(game_manager.highscore))
 
 
 func _process(delta: float) -> void:
@@ -167,6 +175,10 @@ func shoot_player() -> void:
 	var shoot_direction = Vector2.UP.rotated(player.bubble.rotation)
 	if player.bubble.exit_player():
 		player.bubble = null
+		bubble_sound.play()
+		bubble_sound.pitch_scale += 0.025
+		if bubble_sound.pitch_scale > 1.5:
+			bubble_sound.pitch_scale = 1.5
 	
 		var velocity = shoot_direction * shoot_speed
 		player.velocity = velocity
@@ -183,6 +195,15 @@ func _connect_pickup_signals(level: Node2D) -> void:
 func _on_pickup() -> void:
 	game_manager.score += 10
 	label.set_text("Score: " + str(game_manager.score))
+	
+	if game_manager.score > game_manager.highscore:
+		game_manager.highscore = game_manager.score
+		high_score_label.set_text("highscore: " + str(game_manager.highscore))		
+	
+	pickup_sound.play()
+	pickup_sound.pitch_scale += 0.0125
+	if pickup_sound.pitch_scale > 1.5:
+		pickup_sound.pitch_scale = 1.5
 
 
 func _restart() -> void:
@@ -193,5 +214,6 @@ func _restart() -> void:
 	
 	await get_tree().create_timer(game_over_wait_duration).timeout
 	AudioServer.set_bus_effect_enabled(music_bus_index, 0, !is_game_over)
+	game_manager.score = 0
 	if get_tree():
 		get_tree().reload_current_scene()
