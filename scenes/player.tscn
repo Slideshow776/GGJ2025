@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://fsp8ieeax256"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2qefk"]
-[ext_resource type="Texture2D" uid="uid://j5sis2sxsb7e" path="res://assets/images/waffle_test.png" id="2_dlmvl"]
+[ext_resource type="Texture2D" uid="uid://c1f2msuueuqvl" path="res://assets/images/waffle_man.png" id="2_8sdes"]
 [ext_resource type="AudioStream" uid="uid://boyvjnn18vpme" path="res://assets/audio/sfx/682424__pnmcarrierailfan__human-fart_3.mp3" id="3_aymqy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4a85"]
@@ -16,8 +16,10 @@ motion_mode = 1
 script = ExtResource("1_2qefk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.40625, 0.40625)
-texture = ExtResource("2_dlmvl")
+unique_name_in_owner = true
+position = Vector2(5, 11)
+scale = Vector2(0.104776, 0.104776)
+texture = ExtResource("2_8sdes")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h4a85")

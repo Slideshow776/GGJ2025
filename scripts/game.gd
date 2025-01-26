@@ -150,6 +150,8 @@ func _move_player() -> void:
 		get_tree().reload_current_scene()
 	
 	if is_first_player_event:
+		var music_bus_index = AudioServer.get_bus_index("Music")
+		AudioServer.set_bus_effect_enabled(music_bus_index, 0, false)
 		is_first_player_event = false
 		is_camera_counting = true
 		enter_player_in_first_bubble()

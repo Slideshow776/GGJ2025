@@ -1,17 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ul47tjraayjv"]
+[gd_scene load_steps=6 format=3 uid="uid://ul47tjraayjv"]
 
 [ext_resource type="Script" path="res://scripts/bubble.gd" id="1_2m67i"]
-[ext_resource type="Texture2D" uid="uid://op4yb8wp6yl" path="res://assets/images/icon.svg" id="1_ilpnw"]
+[ext_resource type="Texture2D" uid="uid://c8lslnonod8bs" path="res://assets/images/bubble_normal.png" id="2_ryefv"]
+[ext_resource type="Texture2D" uid="uid://ck7nyn5bnfub7" path="res://assets/images/bubble_arrow.png" id="3_3sack"]
+[ext_resource type="Texture2D" uid="uid://btd6run4j5qis" path="res://assets/images/bubble_pop.png" id="4_3s87h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7o3"]
 radius = 69.029
 
 [node name="Bubble" type="Area2D"]
 script = ExtResource("1_2m67i")
+bubble_normal_texture = ExtResource("2_ryefv")
+bubble_arrow_texture = ExtResource("3_3sack")
+bubble_pop_texture = ExtResource("4_3s87h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.352941)
-texture = ExtResource("1_ilpnw")
+position = Vector2(0, -16.5)
+scale = Vector2(0.129719, 0.139757)
+texture = ExtResource("2_ryefv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_st7o3")
