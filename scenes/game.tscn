@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://co16p1xahabxr"]
+[gd_scene load_steps=10 format=3 uid="uid://co16p1xahabxr"]
 
 [ext_resource type="PackedScene" uid="uid://fsp8ieeax256" path="res://scenes/player.tscn" id="1_bc5s3"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_cpdko"]
 [ext_resource type="PackedScene" uid="uid://bb0n3ofiugkw2" path="res://scenes/levels/level_0.tscn" id="2_bpl2f"]
 [ext_resource type="Texture2D" uid="uid://c3o4s5vjks17k" path="res://assets/images/arkitekturisk_perle.png" id="2_lvsdj"]
+[ext_resource type="PackedScene" uid="uid://r7h3yhl50hky" path="res://scenes/levels/level_1.tscn" id="3_bosyj"]
+[ext_resource type="PackedScene" uid="uid://cy3llg65j8q3v" path="res://scenes/levels/level_2.tscn" id="4_ud3qt"]
 [ext_resource type="AudioStream" uid="uid://b3qcq6qy8vkbk" path="res://assets/audio/sfx/104940__glaneur-de-sons__bubble-1.ogg" id="6_xqx1r"]
 [ext_resource type="AudioStream" uid="uid://ndwrs10l7kku" path="res://assets/audio/sfx/326979__wingsofirony__open-close-jar.wav" id="7_fghxe"]
 [ext_resource type="Theme" path="res://assets/main_theme.tres" id="7_llnwt"]
@@ -11,6 +13,7 @@
 [node name="Game" type="Node2D"]
 position = Vector2(0, -64)
 script = ExtResource("1_cpdko")
+level_scenes = Array[PackedScene]([ExtResource("2_bpl2f"), ExtResource("3_bosyj"), ExtResource("4_ud3qt")])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true

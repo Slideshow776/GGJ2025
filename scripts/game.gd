@@ -2,8 +2,9 @@ extends Node2D
 
 @export var shoot_speed := 1000
 @export var game_over_wait_duration := 1.75
+@export var level_scenes: Array[PackedScene] = []  # Exported list of levels
 
-var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
+#var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
 var loaded_levels: Array[Level2] = []
 var num_levels := 0
 var level_height := 1280
@@ -49,10 +50,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var latest_level: Level2 = loaded_levels[-1]
-	if player.position.y < latest_level.position.y + level_height:
-		load_new_level()
-		remove_old_level()
+	if loaded_levels.size() > 0:
+		var latest_level: Level2 = loaded_levels[loaded_levels.size() -1]
+		if player.position.y < latest_level.position.y + level_height:
+			load_new_level()
+			remove_old_level()
 	
 	if is_camera_counting:
 		camera_counter += delta
@@ -75,6 +77,10 @@ func _input(event: InputEvent) -> void:
 			_move_player()
 	elif event is InputEventScreenTouch:  # Detect touch events
 		if event.pressed:
+			_move_player()
+	elif event is InputEventKey: # detect keyboard events
+		if event.pressed:
+			print("A key was pressed!")
 			_move_player()
 
 
@@ -120,11 +126,11 @@ func load_new_level() -> void:
 
 	var level_scene = level_scenes[randi() % level_scenes.size()]
 	var new_level = level_scene.instantiate() as Level2
-	
+ 	
 	if new_level == null:
 		print("Error: Failed to instantiate new level.")
 		return
-	
+ 	
 	new_level.set_new_position(Vector2(0.0, -(loaded_levels.size() + 1) * level_height))
 
 	add_child(new_level)
@@ -137,11 +143,11 @@ func remove_old_level() -> void: # a better approach would be to pool the levels
 	if loaded_levels.size() < 4:
 		return
 
-	loaded_levels[-4].queue_free()
+	loaded_levels[loaded_levels.size() -4].queue_free()
 
 
 func _move_player() -> void:
-	if is_game_over:
+	if is_game_over and get_tree():
 		get_tree().reload_current_scene()
 	
 	if is_first_player_event:
