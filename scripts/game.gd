@@ -8,7 +8,6 @@ var loaded_levels: Array[Level2] = []
 var num_levels := 0
 var level_height := 1280
 var is_first_player_event := true
-var score := 0
 var player_original_position: Vector2
 var background_original_position: Vector2
 var camera_original_position: Vector2
@@ -179,36 +178,37 @@ func _connect_pickup_signals(level: Node2D) -> void:
 
 
 func _on_pickup() -> void:
-	score += 10
-	label.set_text("Score: " + str(score))
+	GameManager.score += 10
+	label.set_text("Score: " + str(GameManager.score))
 
 
 func _restart() -> void:
 	is_game_over = true
 	await get_tree().create_timer(game_over_wait_duration).timeout
+	get_tree().reload_current_scene()
 	
-	position_tween.stop()
-	is_first_player_event = true
-	purge_player_from_bubbles()
-	loaded_levels.clear()
-	load_new_level()
-	level_0.restart()
-	first_bubble = level_0.first_bubble	
-	background.position = background_original_position
-	is_camera_counting = false
-	camera_counter = 0.0
-	camera_2d.position = camera_original_position
-	player.position = player_original_position
-	player.restart()
-	first_bubble._player = null
-	is_game_over = false
+	#position_tween.stop()
+	#is_first_player_event = true
+	#purge_player_from_bubbles()
+	#loaded_levels.clear()
+	#load_new_level()
+	#level_0.restart()
+	#first_bubble = level_0.first_bubble	
+	#background.position = background_original_position
+	#is_camera_counting = false
+	#camera_counter = 0.0
+	#camera_2d.position = camera_original_position
+	#player.position = player_original_position
+	#player.restart()
+	#first_bubble._player = null
+	#is_game_over = false
 
 
-func purge_player_from_bubbles() -> void:
-	var bubbles_node = get_node_or_null("Entities/Bubbles")
-	if not bubbles_node:
-		return
-
-	for bubble in bubbles_node.get_children():
-		if bubble is Bubble and bubble._player == player:
-			(bubble as Bubble).exit_player()  # Ensure the player exits the bubble
+#func purge_player_from_bubbles() -> void:
+	#var bubbles_node = get_node_or_null("Entities/Bubbles")
+	#if not bubbles_node:
+		#return
+#
+	#for bubble in bubbles_node.get_children():
+		#if bubble is Bubble and bubble._player == player:
+			#(bubble as Bubble).exit_player()  # Ensure the player exits the bubble
