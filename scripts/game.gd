@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var shoot_speed := 1000
-@export var game_over_wait_duration := 1.5
+@export var game_over_wait_duration := 1.75
 
 var level_scenes: Array[PackedScene] = []  # Array to store all the level scenes
 var loaded_levels: Array[Level2] = []
@@ -51,16 +51,16 @@ func _process(delta: float) -> void:
 		
 	if !is_game_over and camera_counter >= first_bubble_move_duration * 0.2:
 		is_camera_counting = false
-		background.position.y = player.global_position.y
-		camera_2d.position.y = player.position.y
+		if player.position.y < 2392 and (player.position.x > -170 and player.position.x < 850):
+			background.position.y = player.global_position.y
+			camera_2d.position.y = player.position.y
+		else:
+			_restart()
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("restart"):
+	if event.is_action_pressed("restart") and get_tree():
 		get_tree().reload_current_scene()
-		
-	if is_game_over:
-		return
 	
 	if event is InputEventMouseButton:  # Detect any mouse button
 		if event.pressed:
@@ -133,6 +133,9 @@ func remove_old_level() -> void: # a better approach would be to pool the levels
 
 
 func _move_player() -> void:
+	if is_game_over:
+		get_tree().reload_current_scene()
+	
 	if is_first_player_event:
 		is_first_player_event = false
 		is_camera_counting = true
@@ -147,7 +150,7 @@ func enter_player_in_first_bubble():
 	if first_bubble == null:
 		print("game.gd => Error: first bubble is null!")
 		return
-		
+	
 	player.bubble = first_bubble
 	first_bubble.enter_player(player)
 	
@@ -178,37 +181,12 @@ func _connect_pickup_signals(level: Node2D) -> void:
 
 
 func _on_pickup() -> void:
-	GameManager.score += 10
-	label.set_text("Score: " + str(GameManager.score))
+	game_manager.score += 10
+	label.set_text("Score: " + str(game_manager.score))
 
 
 func _restart() -> void:
 	is_game_over = true
 	await get_tree().create_timer(game_over_wait_duration).timeout
-	get_tree().reload_current_scene()
-	
-	#position_tween.stop()
-	#is_first_player_event = true
-	#purge_player_from_bubbles()
-	#loaded_levels.clear()
-	#load_new_level()
-	#level_0.restart()
-	#first_bubble = level_0.first_bubble	
-	#background.position = background_original_position
-	#is_camera_counting = false
-	#camera_counter = 0.0
-	#camera_2d.position = camera_original_position
-	#player.position = player_original_position
-	#player.restart()
-	#first_bubble._player = null
-	#is_game_over = false
-
-
-#func purge_player_from_bubbles() -> void:
-	#var bubbles_node = get_node_or_null("Entities/Bubbles")
-	#if not bubbles_node:
-		#return
-#
-	#for bubble in bubbles_node.get_children():
-		#if bubble is Bubble and bubble._player == player:
-			#(bubble as Bubble).exit_player()  # Ensure the player exits the bubble
+	if get_tree():
+		get_tree().reload_current_scene()

@@ -1,3 +1,4 @@
+class_name GameManager
 extends Node
 
 var score := 0

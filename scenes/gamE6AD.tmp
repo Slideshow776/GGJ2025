@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://co16p1xahabxr"]
+
+[ext_resource type="PackedScene" uid="uid://fsp8ieeax256" path="res://scenes/player.tscn" id="1_bc5s3"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_cpdko"]
+[ext_resource type="PackedScene" uid="uid://bb0n3ofiugkw2" path="res://scenes/levels/level_0.tscn" id="2_bpl2f"]
+[ext_resource type="Texture2D" uid="uid://c3o4s5vjks17k" path="res://assets/images/arkitekturisk_perle.png" id="2_lvsdj"]
+[ext_resource type="Theme" path="res://assets/main_theme.tres" id="7_llnwt"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(0, -64)
+script = ExtResource("1_cpdko")
+shoot_speed = null
+game_over_wait_duration = null
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(332.195, 1862.13)
+position_smoothing_speed = 20.0
+
+[node name="Background" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.513233, 0.513233, 0.513233, 1)
+position = Vector2(330, 1756)
+scale = Vector2(1.10168, 1.10168)
+texture = ExtResource("2_lvsdj")
+
+[node name="Level0" parent="." instance=ExtResource("2_bpl2f")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." instance=ExtResource("1_bc5s3")]
+unique_name_in_owner = true
+position = Vector2(331, 2392)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_right = 30.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("7_llnwt")
+text = "Score: o"
+metadata/_edit_use_anchors_ = true
