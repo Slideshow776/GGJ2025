@@ -15,6 +15,7 @@ var original_scale: Vector2
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var gpu_particles_2d: GPUParticles2D = %GPUParticles2D
+@onready var jam_effect: GPUParticles2D = %jamEffect
 
 
 func _ready() -> void:
@@ -38,6 +39,7 @@ func die() -> void:
 	%FartSound.pitch_scale = randf_range(0.5, 1.5)
 	%FartSound.play()
 	
+	jam_effect.emitting = true
 	
 func air_animation() -> void:
 	gpu_particles_2d.emitting = true
@@ -56,6 +58,7 @@ func normal_animation() -> void:
 	
 	
 func restart() -> void:
+	jam_effect.emitting = false
 	velocity = Vector2.ZERO
 	rotation = 0.0
 	bubble = null

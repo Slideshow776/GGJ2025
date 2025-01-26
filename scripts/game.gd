@@ -19,6 +19,7 @@ var camera_frequency := 0.2
 var is_camera_counting := false
 var first_bubble_move_duration = 1.0
 var position_tween: Tween
+var intro_tween: Tween
 
 @onready var player: Player = %Player
 @onready var label: Label = %Label
@@ -42,6 +43,11 @@ func _ready() -> void:
 	camera_original_position = camera_2d.position
 	player_original_position = player.global_position
 	player.died.connect(_restart)
+	
+	intro_tween = create_tween()
+	intro_tween.set_loops(-1)
+	intro_tween.tween_property(player, "position:x", player.position.x * 0.8, 1.0)
+	intro_tween.tween_property(player, "position:x", player.position.x * 1.2, 2.0)
 	
 	bubble_sound.pitch_scale = 0.5
 	pickup_sound.pitch_scale = 0.5
@@ -155,6 +161,7 @@ func _move_player() -> void:
 		is_first_player_event = false
 		is_camera_counting = true
 		enter_player_in_first_bubble()
+		intro_tween.stop()
 		return
 	
 	shoot_player()

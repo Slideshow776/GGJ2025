@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co16p1xahabxr"]
+[gd_scene load_steps=12 format=3 uid="uid://co16p1xahabxr"]
 
 [ext_resource type="PackedScene" uid="uid://fsp8ieeax256" path="res://scenes/player.tscn" id="1_bc5s3"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_cpdko"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c3o4s5vjks17k" path="res://assets/images/arkitekturisk_perle.png" id="2_lvsdj"]
 [ext_resource type="PackedScene" uid="uid://r7h3yhl50hky" path="res://scenes/levels/level_1.tscn" id="3_bosyj"]
 [ext_resource type="PackedScene" uid="uid://cy3llg65j8q3v" path="res://scenes/levels/level_2.tscn" id="4_ud3qt"]
+[ext_resource type="PackedScene" uid="uid://bw21iffig8xtd" path="res://scenes/levels/level_3.tscn" id="5_v700e"]
+[ext_resource type="PackedScene" uid="uid://ded7e4bl33uqp" path="res://scenes/levels/level_4.tscn" id="6_qdwf0"]
 [ext_resource type="AudioStream" uid="uid://b3qcq6qy8vkbk" path="res://assets/audio/sfx/104940__glaneur-de-sons__bubble-1.ogg" id="6_xqx1r"]
 [ext_resource type="AudioStream" uid="uid://ndwrs10l7kku" path="res://assets/audio/sfx/326979__wingsofirony__open-close-jar.wav" id="7_fghxe"]
 [ext_resource type="Theme" path="res://assets/main_theme.tres" id="7_llnwt"]
@@ -13,7 +15,7 @@
 [node name="Game" type="Node2D"]
 position = Vector2(0, -64)
 script = ExtResource("1_cpdko")
-level_scenes = Array[PackedScene]([ExtResource("2_bpl2f"), ExtResource("3_bosyj"), ExtResource("4_ud3qt")])
+level_scenes = Array[PackedScene]([ExtResource("2_bpl2f"), ExtResource("3_bosyj"), ExtResource("4_ud3qt"), ExtResource("5_v700e"), ExtResource("6_qdwf0")])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -22,7 +24,7 @@ position_smoothing_speed = 20.0
 
 [node name="Background" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.513233, 0.513233, 0.513233, 1)
+modulate = Color(0.361628, 0.421189, 0.470872, 1)
 position = Vector2(330, 1756)
 scale = Vector2(1.10168, 1.10168)
 texture = ExtResource("2_lvsdj")
