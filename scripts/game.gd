@@ -165,11 +165,11 @@ func shoot_player() -> void:
 		return
 	
 	var shoot_direction = Vector2.UP.rotated(player.bubble.rotation)
-	player.bubble.exit_player()
-	player.bubble = null
+	if player.bubble.exit_player():
+		player.bubble = null
 	
-	var velocity = shoot_direction * shoot_speed
-	player.velocity = velocity
+		var velocity = shoot_direction * shoot_speed
+		player.velocity = velocity
 
 
 func _connect_pickup_signals(level: Node2D) -> void:

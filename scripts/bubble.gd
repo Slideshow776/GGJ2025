@@ -30,13 +30,14 @@ func enter_player(player: Player) -> void:
 	_position_tween.finished.connect(func() -> void: player.bubble = self)
 
 
-func exit_player() -> void:
-	if _position_tween:
-		return
+func exit_player() -> bool:
+	if _position_tween.is_running():
+		return false
 		
 	_player = null
 	_position_tween.stop()
 	_pop()
+	return true
 
 
 func _on_area_entered(area_that_entered: Node) -> void:
