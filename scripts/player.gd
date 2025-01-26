@@ -14,10 +14,12 @@ var original_scale: Vector2
 
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var gpu_particles_2d: GPUParticles2D = %GPUParticles2D
 
 
 func _ready() -> void:
 	original_scale = sprite_2d.scale
+	gpu_particles_2d.local_coords = false
 
 
 func _physics_process(delta) -> void:
@@ -38,6 +40,7 @@ func die() -> void:
 	
 	
 func air_animation() -> void:
+	gpu_particles_2d.emitting = true
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE)
 	tween.set_ease(Tween.EASE_OUT)
@@ -45,6 +48,7 @@ func air_animation() -> void:
 		
 	
 func normal_animation() -> void:
+	gpu_particles_2d.emitting = false
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_BOUNCE)
 	tween.set_ease(Tween.EASE_OUT)

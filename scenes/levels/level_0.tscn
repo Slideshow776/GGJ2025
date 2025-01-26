@@ -38,6 +38,9 @@ position = Vector2(506, 538)
 [node name="Bubble3" parent="Entities/Bubbles" instance=ExtResource("1_7c3w6")]
 position = Vector2(325, 13)
 
+[node name="Bubble4" parent="Entities/Bubbles" instance=ExtResource("1_7c3w6")]
+position = Vector2(140, 412)
+
 [node name="Enemies" type="Node" parent="Entities"]
 
 [node name="Pickups" type="Node" parent="Entities"]
@@ -51,19 +54,25 @@ position = Vector2(350, 697)
 [node name="Pickup3" parent="Entities/Pickups" instance=ExtResource("2_ddtbb")]
 position = Vector2(394, 659)
 
+[node name="Pickup4" parent="Entities/Pickups" instance=ExtResource("2_ddtbb")]
+position = Vector2(306, 422)
+
+[node name="Pickup5" parent="Entities/Pickups" instance=ExtResource("2_ddtbb")]
+position = Vector2(233, 414)
+
 [node name="Obstacles" type="Node" parent="Entities"]
 
 [node name="Obstacle" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
-position = Vector2(269, 544)
+position = Vector2(260, 529)
 
 [node name="Obstacle2" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
-position = Vector2(269, 544)
+position = Vector2(307, 553)
 
 [node name="Obstacle3" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
-position = Vector2(202, 540)
+position = Vector2(204, 554)
 
 [node name="Obstacle4" parent="Entities/Obstacles" instance=ExtResource("3_eiara")]
-position = Vector2(137, 541)
+position = Vector2(129, 541)
 
 [node name="Walls" type="Node" parent="Entities"]
 

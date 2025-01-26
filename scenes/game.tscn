@@ -32,7 +32,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("1_bc5s3")]
 unique_name_in_owner = true
-position = Vector2(331, 2392)
+position = Vector2(337, 2335)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -78,4 +78,4 @@ stream = ExtResource("6_xqx1r")
 [node name="PickupSound" type="AudioStreamPlayer" parent="sfx"]
 unique_name_in_owner = true
 stream = ExtResource("7_fghxe")
-volume_db = 6.934
+volume_db = 8.825

@@ -34,7 +34,7 @@ script = SubResource("GDScript_d2t5u")
 [node name="Bubbles" type="Node" parent="Entities"]
 
 [node name="FirstBubble" parent="Entities/Bubbles" instance=ExtResource("2_hy4jw")]
-position = Vector2(187, 814)
+position = Vector2(159, 987)
 
 [node name="Bubble2" parent="Entities/Bubbles" instance=ExtResource("2_hy4jw")]
 position = Vector2(344, 170)
@@ -44,10 +44,16 @@ position = Vector2(344, 170)
 [node name="Pickups" type="Node" parent="Entities"]
 
 [node name="Pickup" parent="Entities/Pickups" instance=ExtResource("3_x8mml")]
-position = Vector2(229, 686)
+position = Vector2(197, 804)
+
+[node name="Pickup5" parent="Entities/Pickups" instance=ExtResource("3_x8mml")]
+position = Vector2(234, 678)
+
+[node name="Pickup4" parent="Entities/Pickups" instance=ExtResource("3_x8mml")]
+position = Vector2(289, 472)
 
 [node name="Pickup2" parent="Entities/Pickups" instance=ExtResource("3_x8mml")]
-position = Vector2(280, 538)
+position = Vector2(262, 573)
 
 [node name="Pickup3" parent="Entities/Pickups" instance=ExtResource("3_x8mml")]
 position = Vector2(317, 381)
@@ -58,13 +64,13 @@ position = Vector2(317, 381)
 position = Vector2(519, 956)
 
 [node name="Obstacle2" parent="Entities/Obstacles" instance=ExtResource("4_eiw4i")]
-position = Vector2(519, 956)
+position = Vector2(449, 972)
 
 [node name="Obstacle3" parent="Entities/Obstacles" instance=ExtResource("4_eiw4i")]
-position = Vector2(452, 952)
+position = Vector2(453, 933)
 
 [node name="Obstacle4" parent="Entities/Obstacles" instance=ExtResource("4_eiw4i")]
-position = Vector2(387, 953)
+position = Vector2(383, 945)
 
 [node name="Walls" type="Node" parent="Entities"]
 
