@@ -18,6 +18,7 @@ config/icon="res://assets/images/icon.svg"
 [autoload]
 
 game_manager="*res://scripts/game_manager.gd"
+AudioStreamPlayer2d="*res://scenes/audio_stream_player_2d.tscn"
 
 [display]
 

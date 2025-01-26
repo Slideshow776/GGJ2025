@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj26o4fskjpl4"]
+
+[ext_resource type="AudioStream" uid="uid://dwivxxepbi8qt" path="res://assets/audio/music/silly-beat-149323.mp3" id="1_gdmb4"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer"]
+stream = ExtResource("1_gdmb4")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

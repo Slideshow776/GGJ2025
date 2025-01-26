@@ -164,10 +164,10 @@ func shoot_player() -> void:
 	if player.bubble == null:
 		return
 	
+	var shoot_direction = Vector2.UP.rotated(player.bubble.rotation)
 	if player.bubble.exit_player():
 		player.bubble = null
 	
-		var shoot_direction = Vector2.UP.rotated(player.bubble.rotation)
 		var velocity = shoot_direction * shoot_speed
 		player.velocity = velocity
 
@@ -187,6 +187,11 @@ func _on_pickup() -> void:
 
 func _restart() -> void:
 	is_game_over = true
+	
+	var music_bus_index = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_effect_enabled(music_bus_index, 0, is_game_over)
+	
 	await get_tree().create_timer(game_over_wait_duration).timeout
+	AudioServer.set_bus_effect_enabled(music_bus_index, 0, !is_game_over)
 	if get_tree():
 		get_tree().reload_current_scene()
