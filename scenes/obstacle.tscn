@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://p33hcubmmdyb"]
+[gd_scene load_steps=6 format=3 uid="uid://p33hcubmmdyb"]
 
 [ext_resource type="Texture2D" uid="uid://bqkte0ihh5q0v" path="res://assets/images/forks.png" id="1_fv0gt"]
+[ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_vk4me"]
 [ext_resource type="Script" path="res://scripts/kill_entity.gd" id="2_p2unk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxtkf"]
@@ -11,8 +12,10 @@ size = Vector2(70.7107, 70.7107)
 [node name="Obstacle" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("1_vk4me")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 rotation = 0.785398
 scale = Vector2(0.0797187, 0.0797187)
 texture = ExtResource("1_fv0gt")

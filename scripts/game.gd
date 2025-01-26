@@ -36,7 +36,7 @@ func _ready() -> void:
 	level_scenes.append(level_0)
 	num_levels += 1
 	load_new_level()
-	camera_2d.zoom = Vector2.ONE * 0.9
+	camera_2d.zoom = Vector2.ONE * 1.0
 	
 	background_original_position = background.position
 	camera_original_position = camera_2d.position

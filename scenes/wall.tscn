@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm38iob7fov24"]
 
-[ext_resource type="Texture2D" uid="uid://op4yb8wp6yl" path="res://assets/images/icon.svg" id="1_c43gh"]
+[ext_resource type="Texture2D" uid="uid://bssmei5ig0vs1" path="res://assets/images/mouth.png" id="1_e3c0v"]
 [ext_resource type="Script" path="res://scripts/kill_entity.gd" id="2_6s1b8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi05a"]
@@ -14,7 +14,9 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_c43gh")
+position = Vector2(-7.99999, 7.00001)
+scale = Vector2(0.132308, 0.11421)
+texture = ExtResource("1_e3c0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qi05a")
