@@ -25,8 +25,8 @@ position_smoothing_speed = 20.0
 [node name="Background" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.361628, 0.421189, 0.470872, 1)
-position = Vector2(330, 1756)
-scale = Vector2(1.10168, 1.10168)
+position = Vector2(328, 1902.26)
+scale = Vector2(0.702863, 0.975191)
 texture = ExtResource("2_lvsdj")
 
 [node name="Level0" parent="." instance=ExtResource("2_bpl2f")]
